@@ -1,4 +1,4 @@
-set clipboard=unnamed
+set clipboard=unnamedplus
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
