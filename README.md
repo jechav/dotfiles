@@ -145,8 +145,9 @@ mv android-sdk-linux android-sdk
 ```
 sudo ln -s ~/android-sdk/platform-tools/adb /bin/adb
 sudo ln -s ~/android-sdk/tools/android /bin/android
-
 ```
+> 64 bits problem, install (emulator no such file) error 2
+> ```sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6```
 
 ### nodejs 4.2.3 LTS version
 ```
