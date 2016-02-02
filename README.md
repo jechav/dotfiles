@@ -77,7 +77,7 @@ wget -P ~/.vim/autoload/ https://raw.githubusercontent.com/tpope/vim-pathogen/ma
 ```
 *Get vim config file*
 ```
-wget https://raw.githubusercontent.com/jochechavez/dotfiles/master/.vimrc -P ~/
+wget https://raw.githubusercontent.com/jochechavez/dotfiles/master/.vimrc -q -O ~/.vimrc
 ```
 *Plugins*
 ```
