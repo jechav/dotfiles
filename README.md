@@ -72,12 +72,12 @@ sudo apt-get install vim vim-gnome
 *folders and patogen*
 ```
 mkdir -p ~/.vim/autoload && 
-mkidr ~/.vim/bundle &&
+mkdir ~/.vim/bundle &&
 wget -P ~/.vim/autoload/ https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 ```
 *Get vim config file*
 ```
-wget https://github.com/jochechavez/dotfiles/blame/master/.vimrc -P ~/
+wget https://raw.githubusercontent.com/jochechavez/dotfiles/master/.vimrc -P ~/
 ```
 *Plugins*
 ```
@@ -93,6 +93,7 @@ git clone https://github.com/tpope/vim-fugitive.git &&
 git clone https://github.com/jwalton512/vim-blade.git &&
 git clone https://github.com/burnettk/vim-angular.git &&
 git clone https://github.com/Valloric/YouCompleteMe.git &&
+cd YouCompleteMe &&
 git submodule update --init --recursive &&
 ./install.py
 ```
