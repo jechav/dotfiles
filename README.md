@@ -145,6 +145,7 @@ mv android-sdk-linux android-sdk
 ```
 sudo ln -s ~/android-sdk/platform-tools/adb /bin/adb
 sudo ln -s ~/android-sdk/tools/android /bin/android
+sudo ln -s ~/android-sdk/tools/emulator /bin/emulator
 ```
 > 64 bits problem, install (emulator no such file) error 2
 > ```sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6```
@@ -175,9 +176,19 @@ adb reverse tcp:8081 tcp:8081
 ```
 
 ### pip virtualenv
+#### Python 3
 ```
+sudo apt-get install python3.4-dev
 wget https://bootstrap.pypa.io/get-pip.py && sudo python get-pip.py && rm get-pip.py
-
 sudo pip install --upgrade virtualenv
+
+virtualenv --no-site-packages --distribute -p /usr/bin/python3.3 ~/.virtualenvs/<project>
 ```
 
+ ### ruby2.2 and rails
+ ```
+ sudo apt-add-repository ppa:brightbox/ruby-ng
+ sudo apt-get update
+ sudo apt-get install ruby2.2 
+ sudo gem install rails
+ ```

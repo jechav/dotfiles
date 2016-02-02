@@ -31,6 +31,7 @@ set showmatch
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 nnoremap <leader><space> :nohlsearch<CR>
+nnoremap p p=`]
 
 "all nerdtree
 map <C-b> :NERDTreeToggle<CR>
@@ -71,6 +72,7 @@ autocmd BufWritePre *.php :%s/\s\+$//e
 autocmd BufWritePre *.py :%s/\s\+$//e
 
 set wildignore+=*/vendor/**
+set wildignore+=*/node_modules/**
 set wildignore+=*/public/forum/**
 set wildignore=Ui_*,*.git,*.pyc
 
@@ -92,3 +94,6 @@ set smartindent
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype scss setlocal ts=2 sts=2 sw=2
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+
