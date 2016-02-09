@@ -56,6 +56,10 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
+"replace selected text and keep clipboard
+" it's a capital 'p' on the end
+vmap r "_dP
+
 " Set to auto read when a file is changed from the outside
 set autoread
 "Always show current position
@@ -96,4 +100,3 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype scss setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-
