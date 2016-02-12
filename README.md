@@ -127,6 +127,27 @@ sudo php5enmod mcrypt
 sudo apt-get install phpmyadmin apache2-utils &&
 sudo service apache2 restart
 ```
+### LEMP
+*nginx*
+```
+sudo apt-get update &&
+sudo apt-get install nginx
+```
+*MySql*
+```
+sudo apt-get install mysql-server
+```
+*PhP*
+```
+sudo apt-get install php5-fpm php5-mysql &&
+sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/i' /etc/php5/fpm/php.ini &&
+sudo service php5-fpm restart
+```
+#### set up nginx file dafault 
+```
+sudo wget https://raw.githubusercontent.com/jochechavez/dotfiles/master/.nginx.default -q -O /etc/nginx/sites-available/default &&
+sudo service nginx restart
+```
 
 ### laravel
 *Composer*
