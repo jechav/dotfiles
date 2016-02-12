@@ -148,6 +148,18 @@ sudo service php5-fpm restart
 sudo wget https://raw.githubusercontent.com/jochechavez/dotfiles/master/.nginx.default -q -O /etc/nginx/sites-available/default &&
 sudo service nginx restart
 ```
+*PhpMyadmin*
+```
+sudo apt-get install phpmyadmin
+> in server selection dont check
+> in dbconfig-common select yes 
+```
+```
+sudo ln -s /usr/share/phpmyadmin /usr/share/nginx/html &&
+sudo php5enmod mcrypt &&
+sudo service php5-fpm restart
+```
+
 
 ### laravel
 *Composer*
