@@ -132,7 +132,6 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 set noerrorbells
 set novisualbell
 set t_vb=
-set vb
 
 " for my zsh terminal <3
 set title
