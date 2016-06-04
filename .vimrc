@@ -31,12 +31,13 @@ set showmatch
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 nnoremap <leader><space> :nohlsearch<CR>
-nnoremap p p=`]
+
 
 "all nerdtree
 map <C-b> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
 
 "Airline
 let g:airline_powerline_fonts = 1
@@ -100,3 +101,9 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype scss setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+
+"quickly select text you just pasted
+" press gp to select 
+noremap gp `[v`] 
+nnoremap p p=`] 
+
