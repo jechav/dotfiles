@@ -99,6 +99,8 @@ git clone https://github.com/tpope/vim-fugitive.git &&
 git clone https://github.com/jwalton512/vim-blade.git &&
 git clone https://github.com/burnettk/vim-angular.git &&
 git clone https://github.com/Valloric/YouCompleteMe.git &&
+git clone git@github.com:othree/html5.vim.git &&
+git clone --depth=1 https://github.com/scrooloose/syntastic.git &
 cd YouCompleteMe &&
 git submodule update --init --recursive &&
 ./install.py
