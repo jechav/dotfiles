@@ -140,6 +140,7 @@ sudo apt-get install nginx
 sudo apt-get install mysql-server
 ```
 *PhP*
+> sudo apt-get install php-fpm php-mysql # ubuntu 16.04 php7 
 ```
 sudo apt-get install php5-fpm php5-mysql &&
 sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/i' /etc/php5/fpm/php.ini &&
