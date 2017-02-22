@@ -2,6 +2,8 @@ set clipboard=unnamedplus
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+set background=dark
+colorscheme solarized
 " Enable history
 set history=1000
 " Enable hidden buffers
@@ -124,3 +126,5 @@ if has("autocmd")
   au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
   au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
 endif
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor'
