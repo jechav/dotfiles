@@ -16,6 +16,7 @@ filetype indent on
 " ---------------------------------------------------------------------------
 
 set history=1000                " Enable history
+set clipboard=unnamed
 set autoindent
 set tabstop=4
 set shiftwidth=4
@@ -29,24 +30,28 @@ set backspace=indent,eol,start
 set ruler
 set showcmd
 set ignorecase
-set colorcolumn=79  
+set textwidth=80
+set colorcolumn=+1  
 set hlsearch
 set hidden                       " Enable hidden buffers
 "set cursorline                  " Highlight current line
 set mouse=a
 set mousehide
 set mousemodel=popup
+set ttyfast
 "let g:pymode = 0
+
 " (Hopefully) removes the delay when hitting esc in insert mode
-set noesckeys
-set ttimeout
-set ttimeoutlen=1
-"set esckeys
-"set timeoutlen=1000 
-"set ttimeoutlen=0
-"set autochdir
-set exrc
+"set noesckeys
+"set ttimeout
+"set ttimeoutlen=1
+set esckeys
+set timeoutlen=1000 
+set ttimeoutlen=0
+set autochdir
 set secure
+
+set synmaxcol=200  
 
 " --------------------------------------------------------------------------- 
 " ~~ MAPPINGS ~~
@@ -119,6 +124,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType make setlocal noexpandtab
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype vue setlocal ts=2 sts=2 sw=2
 
 "autoremove trailing spaces
 autocmd BufWritePre *.php :%s/\s\+$//e
@@ -131,17 +137,39 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 " Disable visual bell
 set noerrorbells
 set novisualbell
-set t_vb=
 
 " for my zsh terminal <3
+if has('gui_running')
+    colorscheme OceanicNext
+endif
+"colorscheme jellybeans
+"colorscheme spacegray
+"colorscheme distinguished 
+"colorscheme solarized 
+"colorscheme darth
+"colorscheme smyck 
+"colorscheme lucius 
+"colorscheme onedark 
+"colorscheme smyck 
+"colorscheme atom-dark
+"colorscheme wombat 
+"colorscheme twilight 
+
 set title
-set clipboard=unnamed
 set background=dark
 set encoding=utf-8
-"set term=screen-256color
+set term=screen-256color
 set term=xterm
 set t_Co=256
 set laststatus=2   " Always show the statusline
+
+"hi ColorColumn ctermbg=8
+hi ColorColumn ctermbg=237
+
+" for vim 8
+if (has("termguicolors"))
+ set termguicolors
+endif
 
 " Mouse
 set guioptions-=r 
@@ -155,15 +183,9 @@ let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-"colorscheme jellybeans
-colorscheme spacegray
-"colorscheme onedark 
-"colorscheme smyck 
-"colorscheme atom-dark
-"colorscheme wombat 
-
 " Ariline conf
-set guifont=Source\ Code\ Pro\ for\ Powerline:h14 "make sure to escape the spaces in the name properly
+"set guifont=Source\ Code\ Pro\ for\ Powerline:h14 "make sure to escape the spaces in the name properly
+set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12 "make sure to escape the spaces in the name properly
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 let g:airline_symbols = {} 
@@ -171,3 +193,17 @@ let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
 let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 
 "set nofoldenable    " disable folding
+
+" --------------------------------------------------------------------------- 
+" ~~ FUNCTIONS ~~
+" ---------------------------------------------------------------------------
+func! WordProcessorMode()
+ setlocal textwidth=80
+ setlocal smartindent
+ "setlocal spell spelllang=en_us
+ setlocal spell spelllang=es
+ setlocal noexpandtab
+endfu
+
+com! WP call WordProcessorMode()
+
