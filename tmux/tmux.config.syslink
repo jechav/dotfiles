@@ -1,0 +1,34 @@
+# Thoughtbot tmux config with some mods
+# improve colors
+set -g default-terminal "screen-256color"
+
+# act like vim
+setw -g mode-keys vi
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+bind-key -r C-h select-window -t :-
+bind-key -r C-l select-window -t :+
+
+set -g prefix2 C-s
+
+
+## Mouse support - set to on if you want to use the mouse
+setw -g mouse on
+
+# Colors for the status bar, session and window list
+# These colors are from mislav dotfiles,
+# https://github.com/mislav/dotfiles/blob/master/tmux.conf
+# status bar
+set -g status-fg colour8
+set -g status-bg colour234
+# current session
+set -g status-left ' #S '
+set -g status-left-length 15
+set -g status-left-fg colour229
+set -g status-left-bg colour166
+# window list
+set -g window-status-format "#[fg=colour8] #I #[fg=colour231]#W#[fg=colour166]#F "
+set -g window-status-current-format "#[fg=colour117,bg=colour31] #I #[fg=colour231]#W#[fg=colour234]#F "
+set -g window-status-separator ""

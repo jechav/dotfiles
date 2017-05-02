@@ -3,20 +3,23 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 set background=dark
-colorscheme solarized
-" Enable history
+"colorscheme solarized
+colorscheme hybrid_material
+"colorscheme hybrid_reverse
+let g:enable_bold_font = 1
+" enable history
 set history=1000
-" Enable hidden buffers
+" enable hidden buffers
 set hidden
 " for my zsh terminal <3
 set term=screen-256color
-set t_Co=256
+set t_co=256
 set esckeys
 set timeoutlen=1000 
 set ttimeoutlen=0
-set laststatus=2   " Always show the statusline
+set laststatus=2   " always show the statusline
 "
-" Mouse
+" mouse
 set mouse=a
 set mousehide
 set mousemodel=popup
@@ -32,60 +35,64 @@ set lazyredraw
 set showmatch 
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
-nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader><space> :nohlsearch<cr>
 
 
 "all nerdtree
 map <C-b> :NERDTreeToggle<CR>
+
+nmap <leader>nf :NERDTreeFind<cr>
+
+map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
 
-"Airline
+"airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
+" show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-"Shortcuts Buffer
-nmap <leader>T :enew<cr>
-" Move to the next buffer
-nmap <leader>l :bnext<CR>
-" " Move to the previous buffer
-nmap <leader>h :bprevious<CR>
-" " Close the current buffer and move to the previous one
-" " This replicates the idea of closing a tab
-nmap <leader>bq :bp <BAR> bd #<CR>
-" " Show all open buffers and their status
-nmap <leader>bl :ls<CR>
+"shortcuts buffer
+nmap <leader>t :enew<cr>
+" move to the next buffer
+nmap <leader>l :bnext<cr>
+" " move to the previous buffer
+nmap <leader>h :bprevious<cr>
+" " close the current buffer and move to the previous one
+" " this replicates the idea of closing a tab
+nmap <leader>bq :bp <bar> bd #<cr>
+" " show all open buffers and their status
+nmap <leader>bl :ls<cr>
 
 "replace selected text and keep clipboard
 " it's a capital 'p' on the end
-vmap r "_dP
+vmap r "_dp
 
-" Set to auto read when a file is changed from the outside
+" set to auto read when a file is changed from the outside
 set autoread
-"Always show current position
+"always show current position
 set ruler
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+" map <space> to / (search) and ctrl-<space> to ? (backwards search)
 map <space> /
 map <c-space> ?
 
 inoremap jj <esc>
 
 "autoremove trailing spaces
-autocmd BufWritePre *.php :%s/\s\+$//e
-autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd bufwritepre *.php :%s/\s\+$//e
+autocmd bufwritepre *.py :%s/\s\+$//e
 
 set wildignore+=*/vendor/**
 set wildignore+=*/node_modules/**
 set wildignore+=*/public/forum/**
-set wildignore=Ui_*,*.git,*.pyc
+set wildignore=ui_*,*.git,*.pyc
 
 set nofoldenable    " disable folding
 
-set cursorline                  " Highlight current line
+set cursorline                  " highlight current line
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -100,15 +107,15 @@ set colorcolumn=99
 set smartindent
 set title
 
-autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd Filetype scss setlocal ts=2 sts=2 sw=2
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd filetype html setlocal ts=2 sts=2 sw=2
+autocmd filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd filetype scss setlocal ts=2 sts=2 sw=2
+autocmd filetype ruby setlocal ts=2 sts=2 sw=2
 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd filetype python set omnifunc=pythoncomplete#complete
+autocmd filetype javascript set omnifunc=javascriptcomplete#completejs
+autocmd filetype html set omnifunc=htmlcomplete#completetags
+autocmd filetype css set omnifunc=csscomplete#completecss
 
 "quickly select text you just pasted
 " press gp to select 
@@ -116,9 +123,9 @@ noremap gp `[v`]
 nnoremap p p=`] 
 
 "surround  word
-nnoremap <Leader>q" ciw""<Esc>P
-nnoremap <Leader>q' ciw''<Esc>P
-nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
+nnoremap <leader>q" ciw""<esc>p
+nnoremap <leader>q' ciw''<esc>p
+nnoremap <leader>qd daw"=substitute(@@,"'\\\|\"","","g")<cr>p
 
 "change cursor gmnome terminal 
 if has("autocmd")
@@ -127,4 +134,12 @@ if has("autocmd")
   au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
 endif
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor'
+let g:ctrlp_custom_ignore = 'node_modules\|ds_store\|git\|vendor'
+
+" Select word
+noremap <space> viw<cr>
+noremap - dd P
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
