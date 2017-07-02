@@ -68,7 +68,7 @@ nmap <leader>bl :ls<cr>
 
 "replace selected text and keep clipboard
 " it's a capital 'p' on the end
-vmap r "_dp
+vmap r "_dP
 
 " set to auto read when a file is changed from the outside
 set autoread
@@ -143,3 +143,13 @@ noremap - dd P
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
+" add lint
+let g:syntastic_javascript_checkers = ['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
