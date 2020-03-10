@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/gengue/.oh-my-zsh
+export ZSH=/Users/joseechavez/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +53,7 @@ plugins=(git zsh-syntax-highlighting history history-substring-search)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/gengue/.composer/vendor/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -83,28 +83,102 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+# alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 PHP_AUTOCONF="/usr/local/bin/autoconf"
-### SERVER SERVICES ALIAS
-# Nginx
-alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-alias nginx.stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-alias nginx.restart='nginx.stop && nginx.start'
 
-# PHP-FPM
-alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist"
-alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew-php.php56.plist"
-alias php-fpm.restart='php-fpm.stop && php-fpm.start'
+export LC_ALL=en_US.UTF-8
 
-# MySQL
-alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
-alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
-alias mysql.restart='mysql.stop && mysql.start'
-
-# Nginx Logs
-alias nginx.logs.error='tail -250f /usr/local/etc/nginx/logs/error.log'
-alias nginx.logs.access='tail -250f /usr/local/etc/nginx/logs/access.log'
-alias nginx.logs.default.access='tail -250f /usr/local/etc/nginx/logs/default.access.log'
-alias nginx.logs.default-ssl.access='tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log'
-alias nginx.logs.phpmyadmin.access='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log'
 export PATH="/usr/local/sbin:$PATH"
+
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+export PATH="$HOME/Library/Python/3.6/bin:$PATH"
+
+export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:$PATH"
+
+
+
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
+
+# pretty print
+alias ccat='pygmentize -g -O style=colorful,linenos=1'
+alias rmr='rm -Rf '
+alias k='kubectl'
+
+# restart nginx
+alias nginx-restart='sudo /Applications/MAMP/Library/bin/nginxctl restart'
+
+alias git-diff="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+ # Andorid configuration
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export PATH="/usr/local/go/bin:$PATH"
+
+# pw ./tests/Unit/FooTest.php or pw --filter test_true_is_true.
+function pw {
+    # Register the command you want to run when changes are detected here
+    run="clear && printf '\e[3J' && vendor/bin/phpunit"
+
+    # Retrieve the custom argments. If none are provided, default to "tests"
+    [[ -n $@ ]] && args=$@ || args="tests"
+
+    # Run the command first...
+    eval "$run $args"
+    # ...then start watching for changes—and run on change
+    watchman-make -p 'src/**/*.php' 'tests/**/*.php' --make=$run -t "$args"
+}
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/"
+
+function hardMerge {
+    branch=$1
+    dest=$2
+
+    git checkout $1
+    git pull origin $1
+    git merge $2
+    git push origin $1
+    git checkout $2
+}
+
+function git-branch {
+    git branch $1
+    git checkout $1
+}
+
+eval $(thefuck --alias)
+
+
+# The next line updates PATH for the Google Cloud SDK.
+# if [ -f '/Users/joseechavez/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joseechavez/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+# if [ -f '/Users/joseechavez/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joseechavez/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/joseechavez/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joseechavez/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/joseechavez/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joseechavez/google-cloud-sdk/completion.zsh.inc'; fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/slss.zsh
