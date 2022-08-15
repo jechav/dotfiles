@@ -110,6 +110,9 @@ Plug 'w0ng/vim-hybrid'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'pgr0ss/vim-github-url'
 
+" start screen
+Plug 'mhinz/vim-startify'
+
 call plug#end()
 
 " --------------------------------------------------------------------------- 
@@ -181,6 +184,8 @@ set list
 set smartcase               " unless uppercase letters are used in the regex.
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
+
+set path=.,,**
 
 " => Turn persistent undo on 
 "    means that you can undo even when you close a buffer/VIM
@@ -327,11 +332,12 @@ noremap <silent> <leader>ss :update<CR>
 vnoremap <silent> <leader>ss <C-C>:update<CR>
 inoremap <silent> <leader>ss <C-O>:update<CR>
 
-" completation
+" completion
 let g:lsc_auto_map = {'defaults': v:true, 'PreviousReference': '', 'NextReference': ''}
 let g:lsc_server_commands = {'dart': 'dart_language_server'}
 
-" --------------------------------------------------------------------------- 
+" Startfify save session on leaving and load 
+let g:startify_session_persistence = 1
 " ~~ PLUGINS CONF ~~
 " ---------------------------------------------------------------------------
 
@@ -390,7 +396,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 """"""""""""""""""""""""""""
 " ~~~~~  COC CONFIG
 """""""""""""""""""""""
-let g:coc_global_extensions = ['coc-spell-checker', 'coc-prettier', 'coc-pairs', 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver', 'coc-tailwind-intellisense', 'coc-react-refactor', 'coc-json' ]
+let g:coc_global_extensions = ['coc-spell-checker', 'coc-prettier', 'coc-pairs', 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver', 'coc-tailwind-intellisense', 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml', 'coc-lightbulb' ]
 
 " Give more space for displaying messages.
 set cmdheight=2
