@@ -1,0 +1,25 @@
+{
+    "cSpell.userWords": [
+      "Chakra",
+      "Checkmark",
+      "HOTSHEET",
+      "PREQUALIFY",
+      "Prequalified",
+      "Recaptcha",
+      "Rehashable",
+      "autofidev",
+      "clsx",
+      "dealerportalservice",
+      "pagebreak",
+      "prequal",
+      "prequalification",
+      "scusa",
+      "semibold",
+      "swiper",
+      "testid",
+      "viewports"
+    ],
+    "snippets.ultisnips.enable": false,
+    "coc.preferences.formatOnSaveFiletypes": ["css", "markdown, javascript", "typescriptreact", "typescript"],
+    "react-refactor.produceClass": false
+}

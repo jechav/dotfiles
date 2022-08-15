@@ -4,7 +4,8 @@ Mac conf
 ```
 git clone git@github.com:jechav/dotfiles.git ~/.dotfiles
 
-ln -s ~/.dotfiles/.vimrc  ~/.vimrc                                                                    master * ] 6:54 PM
+ln -s ~/.dotfiles/.vimrc  ~/.vimrc
+ln -s ~/.dotfiles/coc-settings.json ~/.vim/
 ln -s ~/.dotfiles/.zshrc  ~/.zshrc
 ```
 

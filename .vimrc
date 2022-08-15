@@ -13,61 +13,77 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Plug Manager
-Plug 'VundleVim/Vundle.vim'
+" Plug 'VundleVim/Vundle.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 
-" Highlighting
-Plug 'pangloss/vim-javascript'
+" Highlighting && TS && JSX Support
+" Styled components is causing indent problems witht typescript files
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+"
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'Yggdroot/indentLine'
 
+" Snippets
+" Plug 'honza/vim-snippets'
+
 " Utility
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
+" Plug 'pakutoma/toggle-terminal'
 
 " Find files
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" find in files
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+
 " Autocomplete
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Prisma
+" Plug 'pantharshit00/vim-prisma'
+
 " Snippets
-Plug 'SirVer/ultisnips'
-Plug 'othree/html5.vim'
-Plug 'honza/vim-snippets'
-Plug 'mlaursen/vim-react-snippets'
-Plug 'https://github.com/heavenshell/vim-jsdoc'
+" Plug 'othree/html5.vim'
+" Plug 'https://github.com/heavenshell/vim-jsdoc'
+
+  Plug 'leafOfTree/vim-matchtag'
 
 " Markdown support
-Plug 'tpope/vim-markdown'
+" Plug 'tpope/vim-markdown'
 
-" JSX Support
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " post install (yarn install | npm install) then load plugin only for editing supported files
 " Plug 'prettier/vim-prettier', {
   " \ 'do': 'yarn install',
-  " \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+  " \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'html', 'typescriptreact'] }
 
 " waka code analysis
 Plug 'wakatime/vim-wakatime'
 
 " PHP Support
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-Plug 'tobyS/pdv'
+" Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+" Plug 'tobyS/pdv'
 
 " Lint
 " Plug 'w0rp/ale'
+"
+" lorem ipsum
+Plug 'vim-scripts/loremipsum'
 
 " dart %% flutter
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
-Plug 'thosakwe/vim-flutter'
+" Plug 'dart-lang/dart-vim-plugin'
+" Plug 'natebosch/vim-lsc'
+" Plug 'natebosch/vim-lsc-dart'
+" Plug 'thosakwe/vim-flutter'
 
 " File explorer
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -88,23 +104,11 @@ Plug 'vim-scripts/AnsiEsc.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sjl/badwolf'
-Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Plug 'junegunn/limelight.vim'
-Plug 'mkarmona/colorsbox'
-Plug 'romainl/Apprentice'
 Plug 'Lokaltog/vim-distinguished'
 Plug 'chriskempson/base16-vim'
 Plug 'w0ng/vim-hybrid'
-Plug 'AlessandroYorba/Sierra'
-Plug 'daylerees/colour-schemes'
-Plug 'effkay/argonaut.vim'
-Plug 'ajh17/Spacegray.vim'
-Plug 'atelierbram/Base2Tone-vim'
-Plug 'colepeters/spacemacs-theme.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'pgr0ss/vim-github-url'
 
 call plug#end()
 
@@ -114,10 +118,12 @@ call plug#end()
 syntax on
 filetype plugin indent on
 set history=1000                " Enable history
+" set clipboard=unnamedplus
 set clipboard=unnamed
 set encoding=UTF-8
 set mouse=a
 set shell=/bin/zsh
+set relativenumber
 
 " Indentation
 set tabstop=4
@@ -134,9 +140,13 @@ set guifont=DroidSansMono\ Nerd\ Font\ 14
 
 "set nofoldenable    " disable folding
 " Folding 
-set foldmethod=indent
-set foldlevel=3
-set foldclose=all
+" set foldmethod=indent
+" set foldlevel=3
+" set foldclose=all
+
+" autoindent & smartindent
+set autoindent
+set smartindent
 
 "quickly select text you just pasted
 " press gp to select 
@@ -167,7 +177,7 @@ set listchars=tab:>.,trail:.,precedes:<,extends:>
 set list
 
 """ Searching and Patterns
-set ignorecase              " Default to using case insensitive searches,
+" set ignorecase              " Default to using case insensitive searches,
 set smartcase               " unless uppercase letters are used in the regex.
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
@@ -180,12 +190,19 @@ try
 catch
 endtry
 
+" CDC = Change to Directory of Current file
+command CDC cd %:p:h
+
+" SrcFiles fuzzy search on src folder
+command! -bang SrcFiles call fzf#vim#files('./src', <bang>0)
+
 " --------------------------------------------------------------------------- 
 " ~~ AUTOCOMMANDS ~~
 " ---------------------------------------------------------------------------
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd Filetype typescript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType scss set omnifunc=csscomplete#CompleteCSS
@@ -196,6 +213,7 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype vue setlocal ts=2 sts=2 sw=2
 autocmd Filetype scss setlocal ts=2 sts=2 sw=2
 autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
+autocmd Filetype typescriptreact setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 
 
 "autoremove trailing spaces
@@ -204,6 +222,15 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 " show nerdtree if not file as input
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+" when running at every change you may want to disable quickfix
+" let g:prettier#quickfix_enabled = 0
+" let g:prettier#autoformat_config_present = 1
+
+
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+command! -nargs=0 Eslint :CocCommand eslint.executeAutofix
+
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.html Prettier
 
 " --------------------------------------------------------------------------- 
 " ~~ APPEARENCE ~~
@@ -290,10 +317,15 @@ map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
 
 " toggle ignore case
-nmap <F9> :set ignorecase! ignorecase?
+nmap <F9> :set ignorecase! ignorecase?<cr>
 
 " clear selection
 nnoremap ,<space> <CR>:nohlsearch<CR>
+
+" Save 
+noremap <silent> <leader>ss :update<CR>
+vnoremap <silent> <leader>ss <C-C>:update<CR>
+inoremap <silent> <leader>ss <C-O>:update<CR>
 
 " completation
 let g:lsc_auto_map = {'defaults': v:true, 'PreviousReference': '', 'NextReference': ''}
@@ -303,25 +335,6 @@ let g:lsc_server_commands = {'dart': 'dart_language_server'}
 " ~~ PLUGINS CONF ~~
 " ---------------------------------------------------------------------------
 
-"  UltiSnips
-" let g:UltiSnipsExpandTrigger       = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
-" let g:UltiSnipsListSnippets        = "<c-k>" " List possible snippets based on current file
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-" Expand snippets using ENTER
-let g:UltiSnipsExpandTrigger = "<nop>"
-let g:ulti_expand_or_jump_res = 0
-function ExpandSnippetOrCarriageReturn()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<CR>"
-    endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
-
 " File explorer
 " NERDTress Ctrl+b
 map <C-b> :NERDTreeToggle<CR>
@@ -329,11 +342,11 @@ map <C-b> :NERDTreeToggle<CR>
 let g:NERDSpaceDelims = 2
 
 "Javascript Docs
-nmap <silent> <C-l> <Plug>(jsdoc)
-let g:javascript_plugin_jsdoc = 1
+" nmap <silent> <C-l> <Plug>(jsdoc)
+" let g:javascript_plugin_jsdoc = 1
 
 " Ctrlp ignore
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor\|build'
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor\|build'
 
 " GitGutter
 let g:gitgutter_enabled=0
@@ -342,6 +355,8 @@ nnoremap <silent> <leader>d :GitGutterToggle<cr>
 " fuzzy search
 nnoremap <silent> <leader>o :Files <CR>
 nnoremap <silent> <leader>O :Files! <CR>
+nnoremap <silent> <leader>i :Buffer <CR>
+nnoremap <silent> <leader>p :SrcFiles <CR>
 
 " emmet
 let g:user_emmet_settings = {
@@ -369,10 +384,13 @@ let g:enable_bold_font = 1
 " If you want comments to be in italic, also add this:
 let g:enable_italic_font = 1
 
+" ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 """"""""""""""""""""""""""""
 " ~~~~~  COC CONFIG
 """""""""""""""""""""""
+let g:coc_global_extensions = ['coc-spell-checker', 'coc-prettier', 'coc-pairs', 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver', 'coc-tailwind-intellisense', 'coc-react-refactor', 'coc-json' ]
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -396,19 +414,19 @@ set shortmess+=c
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <silent><expr> <TAB>
+    \ coc#pum#visible() ? coc#_select_confirm() :
+    \ coc#expandableOrJumpable() ?
+    \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+  let g:coc_snippet_next = '<tab>'
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -445,6 +463,25 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" SNIPPETS
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -520,6 +557,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " ~~~~~ END COC CONFIG
 """""""""""""""""""""""
 
+cnoreabbrev Ack Ack!
+nnoremap <Leader>ack :Ack!<Space>
 
 " --------------------------------------------------------------------------- 
 " ~~ FUNCTIONS ~~
@@ -529,17 +568,21 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " UNFOLD WHEN MOVING (up, down)
 """"""
 " toggle control global variable 
-let g:fold_on_move_up_down = 1 " variable
-nmap <leader>nf :let g:fold_on_move_up_down = 0<cr>
-nmap <leader>ff :let g:fold_on_move_up_down = 1<cr>
 
-nnoremap <silent> j :<c-u>call MoveUpDown('j', +1, 1)<cr>
-nnoremap <silent> k :<c-u>call MoveUpDown('k', -1, 1)<cr>
-function! MoveUpDown(cmd, dir, ndef)
-    let n = v:count == 0 ? eval(a:ndef) : v:count
-    let l = line('.') + a:dir * n
-    if g:fold_on_move_up_down
-        silent! execute l . 'foldopen!'
-    endif
-    execute 'norm! ' . n . a:cmd
-endfunction
+" " let g:fold_on_move_up_down = 1 " variable
+" " nmap <leader>nf :let g:fold_on_move_up_down = 0<cr>
+" " nmap <leader>ff :let g:fold_on_move_up_down = 1<cr>
+
+" " nnoremap <silent> j :<c-u>call MoveUpDown('j', +1, 1)<cr>
+" " nnoremap <silent> k :<c-u>call MoveUpDown('k', -1, 1)<cr>
+" " function! MoveUpDown(cmd, dir, ndef)
+    " " let n = v:count == 0 ? eval(a:ndef) : v:count
+    " " let l = line('.') + a:dir * n
+    " " if g:fold_on_move_up_down
+        " " silent! execute l . 'foldopen!'
+    " " endif
+    " " execute 'norm! ' . n . a:cmd
+" " endfunction
+"
+nnoremap <silent> <leader>mm :Prettier<cr>
+nnoremap <silent> <leader>es :Eslint<cr>
