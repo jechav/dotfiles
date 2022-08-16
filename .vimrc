@@ -201,8 +201,37 @@ endtry
 " CDC = Change to Directory of Current file
 command CDC cd %:p:h
 
+" Find parent directory with git
+function! MoshGitPath()
+  let g:gitdir=substitute(system("git rev-parse --show-toplevel 2>&1 | grep -v fatal:"),'\n','','g')
+  if  g:gitdir != '' && isdirectory(g:gitdir)
+      execute "cd ". g:gitdir
+      echo "Root: ". g:gitdir
+  else
+      echo "No git repository"
+  endif
+endfunction
+command! MoshGitPath :call MoshGitPath()
+
 " SrcFiles fuzzy search on src folder
 command! -bang SrcFiles call fzf#vim#files('./src', <bang>0)
+
+function! FoldAll()
+  set foldenable
+  set foldmethod=indent
+  set foldlevel=4
+  set foldclose=all
+endfunction
+command! FoldAll :call FoldAll()
+
+function! FoldAllLocal()
+  setlocal foldenable
+  setlocal foldmethod=indent
+  setlocal foldlevel=4
+  setlocal foldclose=all
+endfunction
+
+command! FoldAllLocal :call FoldAllLocal()
 
 " --------------------------------------------------------------------------- 
 " ~~ AUTOCOMMANDS ~~
@@ -399,7 +428,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 """"""""""""""""""""""""""""
 " ~~~~~  COC CONFIG
 """""""""""""""""""""""
-let g:coc_global_extensions = ['coc-spell-checker', 'coc-prettier', 'coc-pairs', 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver', 'coc-tailwind-intellisense', 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml', 'coc-lightbulb' ]
+let g:coc_global_extensions = ['coc-spell-checker', 'coc-prettier', 'coc-pairs', 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver', 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml', 'coc-lightbulb', 'coc-cspell-dicts']
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -578,20 +607,20 @@ nnoremap <Leader>ack :Ack!<Space>
 """"""
 " toggle control global variable 
 
-" " let g:fold_on_move_up_down = 1 " variable
-" " nmap <leader>nf :let g:fold_on_move_up_down = 0<cr>
-" " nmap <leader>ff :let g:fold_on_move_up_down = 1<cr>
+let g:fold_on_move_up_down = 1 " variable
+nmap <leader>nf :let g:fold_on_move_up_down = 0<cr>
+nmap <leader>ff :let g:fold_on_move_up_down = 1<cr>
 
-" " nnoremap <silent> j :<c-u>call MoveUpDown('j', +1, 1)<cr>
-" " nnoremap <silent> k :<c-u>call MoveUpDown('k', -1, 1)<cr>
-" " function! MoveUpDown(cmd, dir, ndef)
-    " " let n = v:count == 0 ? eval(a:ndef) : v:count
-    " " let l = line('.') + a:dir * n
-    " " if g:fold_on_move_up_down
-        " " silent! execute l . 'foldopen!'
-    " " endif
-    " " execute 'norm! ' . n . a:cmd
-" " endfunction
-"
+nnoremap <silent> j :<c-u>call MoveUpDown('j', +1, 1)<cr>
+nnoremap <silent> k :<c-u>call MoveUpDown('k', -1, 1)<cr>
+function! MoveUpDown(cmd, dir, ndef)
+    let n = v:count == 0 ? eval(a:ndef) : v:count
+    let l = line('.') + a:dir * n
+    if g:fold_on_move_up_down
+        silent! execute l . 'foldopen!'
+    endif
+    execute 'norm! ' . n . a:cmd
+endfunction
+
 nnoremap <silent> <leader>mm :Prettier<cr>
 nnoremap <silent> <leader>es :Eslint<cr>
