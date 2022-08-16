@@ -8,6 +8,7 @@ ln -s ~/.dotfiles/.vimrc  ~/.vimrc
 ln -s ~/.dotfiles/coc-settings.json ~/.vim/
 ln -s ~/.dotfiles/.zshrc  ~/.zshrc
 ln -s ~/.dotfiles/.tmux.conf ~/
+ln -s ~/.dotfiles/oh-my-zsh/kphoen2.zsh-theme ~/.oh-my-zsh/custom/themes
 ```
 
 ## Basic 
