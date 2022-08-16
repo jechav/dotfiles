@@ -130,44 +130,15 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/"
 
-function hardMerge {
-    branch=$1
-    dest=$2
-    def=$(git rev-parse --abbrev-ref HEAD); # current branch
-    if [[ -z $dest ]] then dest=$def fi
-
-    git checkout $branch
-    git pull origin $branch
-    git merge $dest
-    git push origin $branch
-    git checkout $dest
-}
-
 function git-branch {
     git branch $1
     git checkout $1
 }
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/joseechavez/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joseechavez/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-# if [ -f '/Users/joseechavez/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joseechavez/google-cloud-sdk/completion.zsh.inc'; fi
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-# [[ -f /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-# [[ -f /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-# [[ -f /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/joseechavez/projects/ventura/prerender-lambda-edge/node_modules/tabtab/.completions/slss.zsh
-
-## Flutter
-export PATH="$PATH:$HOME/flutter/bin"
+# if [ -f '/Users/joseechavez/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joseechavez/google-cloud-sdk/path.zsh.inc'; fi
 
 ## Go
 # export PATH="$PATH:/usr/local/go/bin"
@@ -176,3 +147,18 @@ export PATH="$PATH:$HOME/flutter/bin"
 # export PATH="$HOME/.cargo/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Use 256 color for tmux.
+alias tmux="TERM=screen-256color-bce tmux"
+# Attempt to take over existing sessions before creating a new tmux session.
+TMUX_DEFAULT_SESSION="tmux"
+alias t="tmux a -d -t ${TMUX_DEFAULT_SESSION} 2> /dev/null || tmux new -s ${TMUX_DEFAULT_SESSION}"
+if [[ -z "$TMUX" ]]; then
+  # Switch to xterm if we're in a tmux session.
+  TERM="xterm-256color"
+fi
+
+# Source local zshrc configs.
+if [[ -f ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi

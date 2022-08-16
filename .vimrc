@@ -110,6 +110,9 @@ Plug 'w0ng/vim-hybrid'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'pgr0ss/vim-github-url'
 
+" smooth scroll
+Plug 'psliwka/vim-smoothie'
+
 " start screen
 Plug 'mhinz/vim-startify'
 

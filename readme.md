@@ -7,6 +7,7 @@ git clone git@github.com:jechav/dotfiles.git ~/.dotfiles
 ln -s ~/.dotfiles/.vimrc  ~/.vimrc
 ln -s ~/.dotfiles/coc-settings.json ~/.vim/
 ln -s ~/.dotfiles/.zshrc  ~/.zshrc
+ln -s ~/.dotfiles/.tmux.conf ~/
 ```
 
 ## Basic 
