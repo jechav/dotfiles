@@ -116,6 +116,9 @@ Plug 'psliwka/vim-smoothie'
 " start screen
 Plug 'mhinz/vim-startify'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 " --------------------------------------------------------------------------- 
@@ -428,7 +431,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 """"""""""""""""""""""""""""
 " ~~~~~  COC CONFIG
 """""""""""""""""""""""
-let g:coc_global_extensions = ['coc-spell-checker', 'coc-prettier', 'coc-pairs', 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver', 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml', 'coc-lightbulb', 'coc-cspell-dicts']
+let g:coc_global_extensions = ['coc-spell-checker', 'coc-prettier', 'coc-pairs', 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver', 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml', 'coc-lightbulb', 'coc-cspell-dicts', 'coc-rls']
 
 " Give more space for displaying messages.
 set cmdheight=2
