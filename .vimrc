@@ -119,6 +119,9 @@ Plug 'mhinz/vim-startify'
 " Rust
 Plug 'rust-lang/rust.vim'
 
+" Nix 
+Plug 'LnL7/vim-nix'
+
 call plug#end()
 
 " --------------------------------------------------------------------------- 
@@ -366,6 +369,8 @@ nnoremap ,<space> <CR>:nohlsearch<CR>
 noremap <silent> <leader>ss :update<CR>
 vnoremap <silent> <leader>ss <C-C>:update<CR>
 inoremap <silent> <leader>ss <C-O>:update<CR>
+
+nnoremap <silent> <leader>cq :ccl<CR>
 
 " completion
 let g:lsc_auto_map = {'defaults': v:true, 'PreviousReference': '', 'NextReference': ''}
