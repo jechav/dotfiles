@@ -8,7 +8,7 @@ export ZSH=/Users/joseechavez/.oh-my-zsh
 # ZSH_THEME="random"
 # ZSH_THEME="murilasso"
 # ZSH_THEME="wezm"
-ZSH_THEME="nanotech"
+ZSH_THEME="kphoen2"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -92,37 +92,32 @@ PHP_AUTOCONF="/usr/local/bin/autoconf"
 export LC_ALL=en_US.UTF-8
 
 export PATH="/usr/local/sbin:$PATH"
-
 export PATH="$HOME/.composer/vendor/bin:$PATH"
-
 export PATH="$HOME/Library/Python/3.6/bin:$PATH"
-
 export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=/opt/homebrew/bin:$PATH
 
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
+alias tconf="vim ~/.tmux.conf"
 
 # pretty print
 alias ccat='bat' # or use bat
 
 alias rmr='rm -Rf '
 alias k='kubectl'
-
 alias grepsrc="grep -R $1 src/"
+alias copy='xclip -sel clip'
 
-# restart nginx
-alias nginx-restart='sudo /Applications/MAMP/Library/bin/nginxctl restart'
+alias refresh='source ~/.zshrc'
+alias crun='cargo run'
 
 alias git-diff="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gbranch="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 
- # Andorid configuration
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+alias sessionizer="~/.local/bin/tmux-sessionizer"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -135,16 +130,11 @@ function git-branch {
     git checkout $1
 }
 
-# eval $(thefuck --alias)
-
-# The next line updates PATH for the Google Cloud SDK.
-# if [ -f '/Users/joseechavez/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joseechavez/google-cloud-sdk/path.zsh.inc'; fi
-
 ## Go
 # export PATH="$PATH:/usr/local/go/bin"
 
 ## Rust
-# export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

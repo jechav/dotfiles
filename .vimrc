@@ -119,6 +119,9 @@ Plug 'mhinz/vim-startify'
 " Rust
 Plug 'rust-lang/rust.vim'
 
+" astro
+Plug 'wuelnerdotexe/vim-astro'
+
 call plug#end()
 
 " --------------------------------------------------------------------------- 
@@ -428,10 +431,19 @@ let g:enable_italic_font = 1
 " ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" Astro.build
+let g:astro_typescript = 'enable'
+
 """"""""""""""""""""""""""""
 " ~~~~~  COC CONFIG
 """""""""""""""""""""""
-let g:coc_global_extensions = ['coc-spell-checker', 'coc-prettier', 'coc-pairs', 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver', 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml', 'coc-lightbulb', 'coc-cspell-dicts', 'coc-rls']
+let g:coc_global_extensions = ['coc-spell-checker',
+            \ 'coc-prettier', 'coc-pairs',
+            \ 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver',
+            \ 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml',
+            \ 'coc-lightbulb', 'coc-cspell-dicts',
+            \ 'coc-rust-analyzer']
+
 
 " Give more space for displaying messages.
 set cmdheight=2

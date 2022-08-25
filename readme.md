@@ -51,4 +51,8 @@ brew install vim
 
 > Open vim and run :PlugInstall
 
+### install rust
+```
+cargo install tmux-sessionizer
+```
 
