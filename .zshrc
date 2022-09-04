@@ -93,14 +93,14 @@ export LC_ALL=en_US.UTF-8
 
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="$HOME/Library/Python/3.6/bin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=/opt/homebrew/bin:$PATH
 
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
-alias tconf="vim ~/.tmux.conf"
+alias tmuxconf="vim ~/.tmux.conf"
 
 # pretty print
 alias ccat='bat' # or use bat
@@ -112,6 +112,7 @@ alias copy='xclip -sel clip'
 
 alias refresh='source ~/.zshrc'
 alias crun='cargo run'
+alias dotfiles='cd ~/.dotfiles'
 
 alias git-diff="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gbranch="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"

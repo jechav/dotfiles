@@ -56,3 +56,8 @@ brew install vim
 cargo install tmux-sessionizer
 ```
 
+### Tmux
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
