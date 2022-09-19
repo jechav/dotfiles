@@ -125,6 +125,8 @@ Plug 'LnL7/vim-nix'
 " astro
 Plug 'wuelnerdotexe/vim-astro'
 
+Plug 'wellle/context.vim'
+
 call plug#end()
 
 " --------------------------------------------------------------------------- 
@@ -265,18 +267,12 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 "autoremove trailing spaces
 autocmd BufWritePre *.php :%s/\s\+$//e
 autocmd BufWritePre *.py :%s/\s\+$//e
-" show nerdtree if not file as input
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" when running at every change you may want to disable quickfix
-" let g:prettier#quickfix_enabled = 0
-" let g:prettier#autoformat_config_present = 1
 
 
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 command! -nargs=0 Eslint :CocCommand eslint.executeAutofix
 
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.html Prettier
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " --------------------------------------------------------------------------- 
 " ~~ APPEARENCE ~~
@@ -446,7 +442,7 @@ let g:coc_global_extensions = ['coc-spell-checker',
             \ 'coc-prettier', 'coc-pairs',
             \ 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver',
             \ 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml',
-            \ 'coc-lightbulb', 'coc-cspell-dicts',
+            \ 'coc-lightbulb', 'coc-cspell-dicts', 'coc-go',
             \ 'coc-rust-analyzer']
 
 
