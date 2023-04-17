@@ -225,7 +225,10 @@ endfunction
 command! MoshGitPath :call MoshGitPath()
 
 " SrcFiles fuzzy search on src folder
-command! -bang SrcFiles call fzf#vim#files('./src', <bang>0)
+command! -bang SrcFiles call fzf#vim#files('./src', fzf#vim#with_preview(),  <bang>0)
+
+" TestFiles fuzzy search on src folder
+command! -bang TestFiles call fzf#vim#files('./test', fzf#vim#with_preview(),  <bang>0)
 
 function! FoldAll()
   set foldenable
@@ -273,6 +276,9 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 command! -nargs=0 Eslint :CocCommand eslint.executeAutofix
 
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
+
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 
 " --------------------------------------------------------------------------- 
 " ~~ APPEARENCE ~~
@@ -370,6 +376,7 @@ vnoremap <silent> <leader>ss <C-C>:update<CR>
 inoremap <silent> <leader>ss <C-O>:update<CR>
 
 nnoremap <silent> <leader>cq :ccl<CR>
+nnoremap <silent> <leader>fq :q<CR>
 
 " completion
 let g:lsc_auto_map = {'defaults': v:true, 'PreviousReference': '', 'NextReference': ''}
@@ -402,6 +409,7 @@ nnoremap <silent> <leader>o :Files <CR>
 nnoremap <silent> <leader>O :Files! <CR>
 nnoremap <silent> <leader>i :Buffer <CR>
 nnoremap <silent> <leader>p :SrcFiles <CR>
+nnoremap <silent> <leader>y :TestFiles <CR>
 
 " emmet
 let g:user_emmet_settings = {
@@ -438,11 +446,11 @@ let g:astro_typescript = 'enable'
 """"""""""""""""""""""""""""
 " ~~~~~  COC CONFIG
 """""""""""""""""""""""
-let g:coc_global_extensions = ['coc-spell-checker',
+let g:coc_global_extensions = ['coc-spell-checker', 'coc-cspell-dicts',
             \ 'coc-prettier', 'coc-pairs',
             \ 'coc-highlight', 'coc-eslint', 'coc-emmet', 'coc-tsserver',
             \ 'coc-react-refactor', 'coc-json', 'coc-sh', 'coc-yaml',
-            \ 'coc-lightbulb', 'coc-cspell-dicts', 'coc-go',
+            \ 'coc-lightbulb', 'coc-cspell-dicts', 'coc-go', 'coc-pyright',
             \ 'coc-rust-analyzer']
 
 
