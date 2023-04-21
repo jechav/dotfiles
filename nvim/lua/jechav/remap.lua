@@ -39,8 +39,6 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
 -- set root directory as current file
 vim.api.nvim_create_user_command('CDC', [[:lcd%:p:h]], {})
 
