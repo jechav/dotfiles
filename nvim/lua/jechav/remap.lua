@@ -46,3 +46,21 @@ vim.api.nvim_create_user_command('CDC', [[:lcd%:p:h]], {})
 -- NvimTree
 vim.keymap.set("n", "<C-b>", "<cmd>NvimTreeToggle<CR>")
 vim.keymap.set("n", "<leader>b", "<cmd>NvimTreeFindFileToggle<CR>")
+
+--  Close current buffer
+vim.keymap.set("n", "<leader>bq", "<cmd>bd<CR>")
+--  Close all buffer
+vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bd<CR>")
+-- Close close file
+vim.keymap.set("n", "<leader>fq", "<cmd>q<CR>")
+-- Save file
+vim.keymap.set("n", "<leader>ss", "<cmd>update<CR>")
+
+-- Close quickfix
+vim.keymap.set("n", "<leader>cq", "<cmd>ccl<CR>")
+
+-- Show  file path
+vim.keymap.set("n", "<leader>fa", "<cmd>echo expand('%:p')<CR>")
+vim.keymap.set("n", "<leader>fz", "<cmd>echo expand('%:~:.')<CR>")
+
+vim.keymap.set("n", "<leader>mm", "<cmd>Prettier<CR>")
