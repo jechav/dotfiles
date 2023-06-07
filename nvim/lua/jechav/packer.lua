@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
     -- Themes
     use "rebelot/kanagawa.nvim"
     use { "catppuccin/nvim", as = "catppuccin" }
+    use { "ellisonleao/gruvbox.nvim" }
     --
 
     use {
@@ -49,18 +50,6 @@ return require('packer').startup(function(use)
             }
         end
     })
-
-    use {
-        'glepnir/dashboard-nvim',
-        event = 'VimEnter',
-        config = function()
-            require('dashboard').setup {
-                -- config
-            }
-        end,
-        requires = {'nvim-tree/nvim-web-devicons'}
-    }
-
 
     use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
     use("theprimeagen/harpoon")
@@ -108,6 +97,32 @@ return require('packer').startup(function(use)
     -- Prettier
     use('jose-elias-alvarez/null-ls.nvim')
     use('MunifTanjim/prettier.nvim')
+
+  use({'glepnir/dbsession.nvim', cmd = { 'SessionSave', 'SessionDelete', 'SessionLoad'},
+    config = function() require('dbsession').setup({}) end
+  })
+
+
+  use {
+      'glepnir/dashboard-nvim',
+      event = 'VimEnter',
+      config = function()
+          require('dashboard').setup {
+              -- config
+          }
+      end,
+      requires = {'nvim-tree/nvim-web-devicons'}
+  }
+
+  use({
+      'kylechui/nvim-surround',
+      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+      config = function()
+          require("nvim-surround").setup({
+              -- Configuration here, or leave empty to use defaults
+          })
+      end
+  })
 
 end)
 

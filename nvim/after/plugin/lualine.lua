@@ -1,7 +1,16 @@
 require('lualine').setup {
     options = {
-        theme = "catppuccin"
-        -- ... the rest of your lualine config
+        icons_enabled = true,
+        theme = "gruvbox",
+    },
+    sections = {
+        lualine_a = {
+            {
+                'filename',
+                path = 4,
+            }
+        },
+        lualine_c = {},
     }
 }
 
